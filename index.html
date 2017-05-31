@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Atikur Rabbi | Web designer, Android & IOS App Developer">
+<meta name="author" content="Ebots ebots.cf">
+<link rel="shortcut icon" href="favicon.ico">
+<title>Age Calculator</title>
+<style>
+
+
+.img-circle,h1,h2,h3,h4,h5,ul, html, body{
+    margin:0px;
+	padding:0px;
+	font-family: 'Roboto', sans-serif;	
+	transition: all 0.5s;
+}
+body{	
+		background: #34495E;
+
+		background-size: cover;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center;
+		text-align: center;
+		color: #FFF;
+
+		
+	}
+
+h1 {color: white; 
+	font-family: Roboto, sans-serif; 
+	font-size: 52px; 
+	font-weight: 300; 
+	line-height: 52px; 
+	margin: 0px; 
+	padding-top:10px; 
+	text-align: center; 
+	text-rendering: optimizeLegibility;}
+h2 {color: #8d9eb0; 
+	font-family: Roboto, sans-serif; 
+	font-size: 17px; 
+	font-weight: normal; 
+	text-align: center;
+	padding:10px;}
+	
+h3 {color: white; 
+	font-family: Roboto, sans-serif; 
+	font-size: 30px; 
+	font-weight: 300; 
+	line-height: 52px; 
+	margin: 0px; 
+	padding-top:20px; 
+	text-align: center; 
+	text-rendering: optimizeLegibility;}
+	
+p {font-size: 14px;}
+
+ul {list-style-type: none;
+	height:3.5em;
+	width:100%;
+    background-color: #FFFFFF;
+	position:fixed;
+    overflow: hidden;
+	}
+li {
+    float: left;
+	width:20%;
+}	
+
+ li a {
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+
+ li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+ li a.active {
+    background-color: #bbb;
+    color: white;
+}
+
+
+	.img-circle {
+	margin-top:10%;
+	height: 200px;
+	width: 200px;
+    border-radius: 50%;
+	overflow: hidden;
+	}
+	
+.img-circle:hover {
+	transform: scale(1.25);}
+	
+	.divider{margin:8px 0 0 0}
+	.divider{height:1px;overflow:hidden;background-color:#e0e0e0}
+	
+	.content {
+	padding-top:10%;
+	}
+.circle {
+	margin-top:10%;
+	height: 100px;
+	width: 100px;
+	overflow: hidden;
+}
+
+
+
+
+input[type=text], select {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=button] {
+    width: 76%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+    background-color: #45a049;
+}
+label {
+    width: 20%;
+    padding: 12px 20px;
+	text-align: center;
+    display: inline-block;
+
+}
+input {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+	background: #34495E;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.half{  
+	width: 50%;
+	text-align: center;
+	color: #FFF;
+	background: #34495E;
+	
+}	
+</style>
+</head>
+
+
+<script type="text/javascript">
+var startyear = "2017";
+var endyear = "1900";
+var dat = new Date();
+var curday = dat.getDate();
+var curmon = dat.getMonth()+1;
+var curyear = dat.getFullYear();
+function checkleapyear(datea)
+{
+if(datea.getYear()%4 == 0)
+{
+if(datea.getYear()% 10 != 0)
+{
+return true;
+}
+else
+{
+if(datea.getYear()% 400 == 0)
+return true;
+else
+return false;
+}
+}
+return false; } function DaysInMonth(Y, M) {
+with (new Date(Y, M, 1, 12)) {
+setDate(0);
+return getDate();
+} } function datediff(date1, date2) {
+var y1 = date1.getFullYear(), m1 = date1.getMonth(), d1 = date1.getDate(),
+y2 = date2.getFullYear(), m2 = date2.getMonth(), d2 = date2.getDate();
+if (d1 < d2) {
+m1--;
+d1 += DaysInMonth(y2, m2);
+}
+if (m1 < m2) {
+y1--;
+m1 += 12;
+}
+return [y1 - y2, m1 - m2, d1 - d2]; } function calage() {
+var calday = document.birthday.day.options[document.birthday.day.selectedIndex].value;
+var calmon = document.birthday.month.options[document.birthday.month.selectedIndex].value;
+var calyear = document.birthday.year.options[document.birthday.year.selectedIndex].value;
+if(curday == "" || curmon=="" || curyear=="" || calday=="" || calmon=="" || calyear=="")
+{
+alert("please fill all the values and click go -");
+}
+else
+{
+var curd = new Date(curyear,curmon-1,curday);
+var cald = new Date(calyear,calmon-1,calday);
+var diff =
+Date.UTC(curyear,curmon,curday,0,0,0) - Date.UTC(calyear,calmon,calday,0,0,0);
+var dife = datediff(curd,cald);
+document.birthday.age.value=dife[0]+" years, "+dife[1]+" months & "+dife[2]+" days";
+
+
+var monleft = (dife[0]*12)+dife[1];
+var secleft = diff/1000/60;
+var hrsleft = secleft/60;
+var daysleft = hrsleft/24;
+
+var as = parseInt(calyear)+dife[0]+1;
+var diff =
+Date.UTC(as,calmon,calday,0,0,0) - Date.UTC(curyear,curmon,curday,0,0,0);
+var datee = diff/1000/60/60/24;
+document.birthday.nbday.value=datee+" days left";
+
+} } </script>
+
+
+<body>
+
+<div  id="admin">
+
+
+
+<ul>
+  <li><a href="" >
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+	</svg>
+  </a></li>
+  
+  
+  
+  
+  <li><a href="#home" class="active">
+<svg width="20px" height="20" viewBox="0 0 460.298 460.297" >
+<g>
+	<g>
+		<path d="M230.149,120.939L65.986,256.274c0,0.191-0.048,0.472-0.144,0.855c-0.094,0.38-0.144,0.656-0.144,0.852v137.041
+			c0,4.948,1.809,9.236,5.426,12.847c3.616,3.613,7.898,5.431,12.847,5.431h109.63V303.664h73.097v109.64h109.629
+			c4.948,0,9.236-1.814,12.847-5.435c3.617-3.607,5.432-7.898,5.432-12.847V257.981c0-0.76-0.104-1.334-0.288-1.707L230.149,120.939
+			z"/>
+		<path d="M457.122,225.438L394.6,173.476V56.989c0-2.663-0.856-4.853-2.574-6.567c-1.704-1.712-3.894-2.568-6.563-2.568h-54.816
+			c-2.666,0-4.855,0.856-6.57,2.568c-1.711,1.714-2.566,3.905-2.566,6.567v55.673l-69.662-58.245
+			c-6.084-4.949-13.318-7.423-21.694-7.423c-8.375,0-15.608,2.474-21.698,7.423L3.172,225.438c-1.903,1.52-2.946,3.566-3.14,6.136
+			c-0.193,2.568,0.472,4.811,1.997,6.713l17.701,21.128c1.525,1.712,3.521,2.759,5.996,3.142c2.285,0.192,4.57-0.476,6.855-1.998
+			L230.149,95.817l197.57,164.741c1.526,1.328,3.521,1.991,5.996,1.991h0.858c2.471-0.376,4.463-1.43,5.996-3.138l17.703-21.125
+			c1.522-1.906,2.189-4.145,1.991-6.716C460.068,229.007,459.021,226.961,457.122,225.438z"/>
+	</g>
+</g>
+
+</svg></a></li>
+  
+  
+  
+  
+  <li><a href="#profile">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+    <path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/>
+</svg></a></li>
+  
+  
+  
+  
+  <li><a href="#skills">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+</svg>
+</a></li>
+  
+  
+  
+  
+  <li><a href="#contact" >
+
+<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path fill="none" d="M0 0h24v24H0z"/>
+    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+</svg></a></li>
+  
+  
+  
+  
+
+  
+  
+  
+  
+
+</ul>
+</div>
+
+<!-- Page Content -->
+<div  >
+	<div  id="content"></br></br></br>
+	 <h3>Age Calculator</h3>
+	</div>
+</div>
+
+ <form name="birthday">
+
+            <label>Date</label>
+			<label>Month</label> 
+			<label>Year</label>
+			
+			</br>
+            <select name="day" class="form-control">
+                <script type="text/javascript">
+for(var j=1;j<32;j++)document.write("<option value="+j+">"+j+"</option>");
+                </script>
+            </select>
+          
+
+            
+            <select name="month" class="form-control">
+                <script type="text/javascript">
+for(var i=1;i<13;i++)document.write("<option value="+i+">"+i+"</option>");
+                </script>
+            </select>
+            
+
+           
+            <select name="year" class="form-control">
+                <script type="text/javascript">
+for(var k=startyear;k>endyear;k--)document.write("<option value="+k+">"+k+"</option>");
+                </script>
+            </select>
+         
+</br>
+
+            <input name="start" onclick="calage()" value="Calculate" type="button" >
+            <br><br>
+
+
+            <label >Age</label>
+
+            <input class="half" name="age" value="Result" >
+
+            <br>
+            <label  >Birthday</label>
+            <input class="half" name="nbday" value="Result" >
+
+
+
+
+
+
+    </div>
+
+</body>
+</html>
